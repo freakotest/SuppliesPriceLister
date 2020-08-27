@@ -4,4 +4,17 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Service\Supplier\Interface\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Supplier.Proxies\Supplier.Proxies.csproj" />
+    <ProjectReference Include="..\Utility.Extension\Utility.Extension.csproj" />
+  </ItemGroup>
+
 </Project>

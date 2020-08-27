@@ -7,13 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\proxy\HumphriesSupplier\DTO\" />
-    <Folder Include="Infrastructure\proxy\MegacorpSupplier\DTO\" />
     <Folder Include="Supplier\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Supplier.DSL\Supplier.DSL.csproj" />
   </ItemGroup>
 
 

@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Supplier.Proxies.Infrastructure.proxy.MegacorpSupplier.DTO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Supplier.Proxies.Infrastructure.proxy.MegacorpSupplier.Interface
 {
-    public class IMegacorpSupplierProxy
+    public interface IMegacorpSupplierProxy
     {
+        IEnumerable<MegacorpPartnerItem> GetWorkItems();
     }
 }

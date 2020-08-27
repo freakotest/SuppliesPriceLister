@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Supplier.Proxies.Infrastructure.proxy.MegacorpSupplier.DTO;
+using System.Collections.Generic;
 
 namespace Supplier.Proxies.Infrastructure.proxy.MegacorpSupplier
 {
@@ -7,30 +9,29 @@ namespace Supplier.Proxies.Infrastructure.proxy.MegacorpSupplier
     {
         private readonly ILogger<MegacorpSupplierProxy> _logger;
 
-        public MegacorpSupplierProxy()
+        public MegacorpSupplierProxy(ILogger<MegacorpSupplierProxy> logger)
         {
-
+            this._logger = logger;
         }
 
-        public DTO.MegacorpPartnerDTO GetWorkItems()
+        public IEnumerable<MegacorpPartnerItem> GetWorkItems()
         {
-            try
+            var input = GetInput();
+
+            var megacorp = JsonConvert.DeserializeObject<DTO.MegacorpPartnerDTO>(input);
+            foreach (var partner in megacorp.partners)
             {
-
+                foreach (var item in partner.Supplies)
+                {
+                    yield return item;
+                }
             }
-            catch(Exception ex)
-            {
-                var input = GetInput();
-
-                return JsonConvert.DeserializeObject<DTO.MegacorpPartnerDTO>(input);
-            }
-
         }
 
-/// <summary>
-/// 
-/// </summary>
-/// <returns></returns>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private string GetInput()
         {
             return @"{

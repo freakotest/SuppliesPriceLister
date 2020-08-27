@@ -17,18 +17,30 @@ namespace Supplier.Proxies.Infrastructure.proxy.HumphriesSupplier
         /// <returns></returns>
         public IEnumerable<DTO.HumphriesWorkItem> GetWorkItems()
         {
+            var returnlist = new List<DTO.HumphriesWorkItem>();
+
             foreach (var item in GetInput())
             {
                 var inputArray = item.Split(',');
-                if(inputArray.Length >= 4) //in actual implementation if the proxy returns list of string we need to ensure it has all 4 input
+                if (inputArray.Length >= 4) //in actual implementation if the proxy returns list of string we need to ensure it has all 4 input
                 {
-                    yield return new DTO.HumphriesWorkItem
+                    try
                     {
-                        identifier = inputArray[0],
-                        desc = inputArray[1],
-                        unit = inputArray[2],
-                        costAUD = inputArray[3],
-                    };
+                        var workitem = new DTO.HumphriesWorkItem
+                        {
+                            identifier = inputArray[0],
+                            desc = inputArray[1],
+                            unit = inputArray[2],
+                            costAUD = inputArray[3],
+                        };
+
+                        returnlist.Add(workitem);
+                    }
+                    catch (Exception ex)
+                    {
+                        //TODO log error to data processor table
+                    }
+
                 }
                 else
                 {
@@ -36,6 +48,7 @@ namespace Supplier.Proxies.Infrastructure.proxy.HumphriesSupplier
                 }
 
             }
+            return returnlist;
         }
 
 
