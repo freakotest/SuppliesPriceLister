@@ -3,6 +3,7 @@ using Supplier.DSL.Service.Supplier.DTO;
 using Supplier.Proxies.Infrastructure.proxy.HumphriesSupplier.Interface;
 using Supplier.Proxies.Infrastructure.proxy.MegacorpSupplier.Interface;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Supplier.DSL.Service.Supplier
 {
@@ -19,7 +20,7 @@ namespace Supplier.DSL.Service.Supplier
             this._mapper = mapper;
         }
 
-        public IEnumerable<SupplierItem> GetAllSupplierItems(decimal exchangeRate)
+        public async Task<IEnumerable<SupplierItem>> GetAllSupplierItems(decimal exchangeRate)
         {
             var megacorpSupplierItems = _megacorpSupplierProxy.GetWorkItems();
             var humphriesWorkItem = _humphriesSupplierProxy.GetWorkItems();
