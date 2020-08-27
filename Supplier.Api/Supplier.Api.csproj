@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>35b4c66e-495a-4097-b373-54d72ea63064</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\proxy\HumphriesSupplier\DTO\" />
+    <Folder Include="Infrastructure\proxy\MegacorpSupplier\DTO\" />
+    <Folder Include="Supplier\" />
+  </ItemGroup>
+
+
+</Project>
